@@ -12,6 +12,5 @@ public:
 	~player_interface();
 
 	virtual int make_move() = 0;
-
 };
 
