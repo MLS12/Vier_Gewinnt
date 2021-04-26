@@ -140,6 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="matchfield_controller.cpp" />
+    <ClCompile Include="matchfield_model.cpp" />
+    <ClCompile Include="matchfield_view.cpp" />
+    <ClCompile Include="player_computer.cpp" />
+    <ClCompile Include="player_human.cpp" />
+    <ClCompile Include="player_interface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="E_Difficulty.h" />
+    <ClInclude Include="E_FieldState.h" />
+    <ClInclude Include="matchfield_controller.h" />
+    <ClInclude Include="matchfield_model.h" />
+    <ClInclude Include="matchfield_view.h" />
+    <ClInclude Include="player_computer.h" />
+    <ClInclude Include="player_human.h" />
+    <ClInclude Include="player_interface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
