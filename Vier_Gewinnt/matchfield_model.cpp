@@ -4,8 +4,14 @@ matchfield_model::matchfield_model()
 {
 }
 
-matchfield_model::matchfield_model(int, int)
+matchfield_model::matchfield_model(int x, int y)
 {
+    m_x = x;
+    m_y = y;
+    m_field.resize(m_y);
+    for (auto& i : m_field) {
+        i.resize(m_x);
+    }
 }
 
 matchfield_model::~matchfield_model()

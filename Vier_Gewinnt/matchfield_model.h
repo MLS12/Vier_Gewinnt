@@ -5,7 +5,9 @@
 class matchfield_model
 {
 private:
-	std::vector <std::vector<int>> m_field;
+	
+	int m_x, m_y;
+	std::vector <std::vector<FieldState::FieldState>> m_field;
 
 public:
 	matchfield_model();
