@@ -32,13 +32,27 @@ bool matchfield_controller::setup()
 {
     int nFieldX = 0, nFieldY = 0;
 
-    std::cout << "Bitte geben Sie die Spielfeldgroesse in x-Richtung ein: " << std::endl;
-    std::cin >> nFieldX;
+    // Einlesen der Spielfeldgröße in X- und Y-Richtung
+    do {
+        std::cout << "Bitte geben Sie die Spielfeldgroesse in x-Richtung ein (4 - 100): " << std::endl;
+        std::cin >> nFieldX;
+        system("CLS");
+    } while (nFieldX < 4 && nFieldX > 100);
 
-    std::cout << "Bitte geben Sie die Spielfeldgroesse in y-Richtung ein: " << std::endl;
-    std::cin >> nFieldY;
+    do {
+        std::cout << "Bitte geben Sie die Spielfeldgroesse in xy-Richtung ein (4 - 100): " << std::endl;
+        std::cin >> nFieldY;
+        system("CLS");
+    } while (nFieldY < 4 && nFieldY > 100);
 
-    matchfield_model(nFieldX, nFieldY);
+    std::cout << "Ihr Spielfeld hat die Groesse " << nFieldX << "*" << nFieldY << " (X*Y)" << std::endl;
+
+    matchfield_model::matchfield_model(nFieldX, nFieldY);
+
+
+    // Abfragen der Spieler-Namen
+
+    // Abfragen des Schwierigkeitsgrades bei Computer-Spieler
 
     return false;
 }
