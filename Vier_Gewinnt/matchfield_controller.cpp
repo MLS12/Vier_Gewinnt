@@ -36,6 +36,7 @@ bool matchfield_controller::setup()
 {
     int nFieldX = 0, nFieldY = 0, nHumanPlayers = 3;
     std::string cPlayer1{}, cPlayer2{};
+    int DifP1 = 0, DifP2 = 0;
 
     // Einlesen der Spielfeldgröße in X- und Y-Richtung
     // X-Richtung
@@ -70,17 +71,53 @@ bool matchfield_controller::setup()
         case 0: 
             std::cout << "Bitte gib einen Namen fuer Computer-Player 1 ein: ";
             std::cin >> cPlayer1;
-            m_player.at(0) = &player_computer(cPlayer1);
+            std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 1 ein (Easy = 0, Advanced = 1, Hard = 2): ";
+            std::cin >> DifP1;
+            m_player.at(0) = &player_computer(cPlayer1, DifP1);
+
+            std::cout << std::endl;
+
+            std::cout << "Bitte gib einen Namen fuer Computer-Player 2 ein: ";
+            std::cin >> cPlayer2;
+            std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
+            std::cin >> DifP2;
+            m_player.at(1) = &player_computer(cPlayer2, DifP2);
+
+            break;
+
+        case 1:
+            std::cout << "Bitte gib deinen Namen ein: ";
+            std::cin >> cPlayer1;
+            m_player.at(0) = &player_human(cPlayer1);
+
+            std::cout << std::endl;
+
+            std::cout << "Bitte gib einen Namen fuer Computer-Player 2 ein: ";
+            std::cin >> cPlayer2;
+            std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
+            std::cin >> DifP2;
+            m_player.at(1) = &player_computer(cPlayer2, DifP2);
+
+            break;
+
+        case 2:
+            std::cout << "Bitte gib den Namen von Player 1 ein: ";
+            std::cin >> cPlayer1;
+            m_player.at(0) = &player_human(cPlayer1);
+
+            std::cout << std::endl;
+
+            std::cout << "Bitte gib den Namen von Player 2 ein: ";
+            std::cin >> cPlayer2;
+            m_player.at(1) = &player_human(cPlayer2);
+
+            break;
+
+        default:
+            std::cout << "Es ist ein Fehler aufgetreten. Das Spiel wird beendet!" << std::endl;
+            break;
 
     }
 
-
-
-
-
-
-
-    // Abfragen des Schwierigkeitsgrades bei Computer-Spieler
-
-    return false;
+    return true;
 }

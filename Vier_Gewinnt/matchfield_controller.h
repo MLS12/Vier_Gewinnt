@@ -4,7 +4,9 @@
 #include "player_interface.h"
 #include <array>
 #include "E_FieldState.h"
+#include "E_Difficulty.h"
 #include <iostream>
+#include <string>
 
 class matchfield_controller
 {
