@@ -34,5 +34,19 @@ player_computer::~player_computer()
 
 int player_computer::make_move(Difficulty::Difficulty dif)
 {
-	return 0;
+	switch (dif) {
+		eEasy:
+
+			break;
+
+		eAdvanced:
+
+			break;
+
+		eHard:
+
+			break;
+
+
+	}
 }
