@@ -19,6 +19,7 @@ matchfield_controller::~matchfield_controller()
 
 bool matchfield_controller::check(int, FieldState::FieldState)
 {
+    //Testkommentar im check
     return false;
 }
 
