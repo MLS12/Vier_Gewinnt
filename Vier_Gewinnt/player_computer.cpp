@@ -1,11 +1,13 @@
 #include "player_computer.h"
+#include "matchfield_model.h"
 
 player_computer::player_computer() : player_interface()
 {
 }
 
-player_computer::player_computer(std::string s, int dif) : player_interface{ s }
+player_computer::player_computer(std::string s, int dif) : player_interface(s)
 {
+
 	switch (dif) {
 		case 0:
 			make_move(Difficulty::Difficulty::eEasy);
@@ -35,15 +37,21 @@ player_computer::~player_computer()
 int player_computer::make_move(Difficulty::Difficulty dif)
 {
 	switch (dif) {
-		eEasy:
+	eEasy:
+
+		std::cout << m_name << "ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
 
 			break;
 
 		eAdvanced:
 
+			// Code wird noch geschrieben
+
 			break;
 
 		eHard:
+
+			// Code wird noch geschrieben
 
 			break;
 

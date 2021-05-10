@@ -70,16 +70,22 @@ bool matchfield_controller::setup()
         case 0: 
             std::cout << "Bitte gib einen Namen fuer Computer-Player 1 ein: ";
             std::cin >> cPlayer1;
-            std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 1 ein (Easy = 0, Advanced = 1, Hard = 2): ";
-            std::cin >> DifP1;
+            do {
+                std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 1 ein (Easy = 0, Advanced = 1, Hard = 2): ";
+                std::cin >> DifP1;
+                system("CLS");
+            } while (DifP1 != 0 || DifP1 != 1 || DifP1 != 2);
             m_player.at(0) = &player_computer(cPlayer1, DifP1);
 
             std::cout << std::endl;
 
             std::cout << "Bitte gib einen Namen fuer Computer-Player 2 ein: ";
             std::cin >> cPlayer2;
-            std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
-            std::cin >> DifP2;
+            do {
+                std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
+                std::cin >> DifP2;
+                system("CLS");
+            } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
             m_player.at(1) = &player_computer(cPlayer2, DifP2);
 
             break;
@@ -93,8 +99,11 @@ bool matchfield_controller::setup()
 
             std::cout << "Bitte gib einen Namen fuer Computer-Player 2 ein: ";
             std::cin >> cPlayer2;
-            std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
-            std::cin >> DifP2;
+            do {
+                std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
+                std::cin >> DifP2;
+                system("CLS");
+            } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
             m_player.at(1) = &player_computer(cPlayer2, DifP2);
 
             break;
