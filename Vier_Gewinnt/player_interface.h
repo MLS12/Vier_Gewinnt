@@ -4,7 +4,7 @@
 
 class player_interface
 {
-protected:
+private:
 	std::string m_name;
 
 public:

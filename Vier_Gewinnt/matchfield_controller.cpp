@@ -34,9 +34,8 @@ bool matchfield_controller::search_winner()
 
 bool matchfield_controller::setup()
 {
-    int nFieldX = 0, nFieldY = 0, nHumanPlayers = 3;
+    int nFieldX = 0, nFieldY = 0, nHumanPlayers = 3, DifP1 = 0, DifP2 = 0;
     std::string cPlayer1{}, cPlayer2{};
-    int DifP1 = 0, DifP2 = 0;
 
     // Einlesen der Spielfeldgröße in X- und Y-Richtung
     // X-Richtung
@@ -53,7 +52,7 @@ bool matchfield_controller::setup()
         system("CLS");
     } while (nFieldY < 4 && nFieldY > 100);
 
-    std::cout << "Ihr Spielfeld hat die Groesse " << nFieldX << "*" << nFieldY << " (X*Y)" << std::endl;
+    std::cout << "Ihr Spielfeld hat die Groesse " << nFieldX << "x" << nFieldY << " (XxY)" << std::endl;
 
     matchfield_model::matchfield_model(nFieldX, nFieldY);                                                   // Konstruktor - Aufruf Model
 
@@ -64,7 +63,7 @@ bool matchfield_controller::setup()
         std::cout << "Wie viele menschliche Spieler spielen das Spiel(0, 1, 2): ";
         std::cin >> nHumanPlayers;
         system("CLS");
-    } while (nHumanPlayers < 0 && nHumanPlayers > 2);
+    } while (nHumanPlayers != 0 || nHumanPlayers != 1 || nHumanPlayers != 2);
 
     // Je nach Spielertyp geschieht die Eingabe und der entsprechende Konstruktor-Aufruf
     switch (nHumanPlayers) {
@@ -115,6 +114,7 @@ bool matchfield_controller::setup()
 
         default:
             std::cout << "Es ist ein Fehler aufgetreten. Das Spiel wird beendet!" << std::endl;
+            return false;
             break;
 
     }

@@ -4,7 +4,7 @@ player_computer::player_computer() : player_interface()
 {
 }
 
-player_computer::player_computer(std::string s, int dif) : player_interface(s)
+player_computer::player_computer(std::string s, int dif) : player_interface{ s }
 {
 	switch (dif) {
 		case 0:

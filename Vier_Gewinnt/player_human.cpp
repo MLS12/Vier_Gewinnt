@@ -4,7 +4,7 @@ player_human::player_human() : player_interface()
 {
 }
 
-player_human::player_human(std::string s) : player_interface(s)
+player_human::player_human(std::string s) : player_interface{ s }
 {
 }
 
