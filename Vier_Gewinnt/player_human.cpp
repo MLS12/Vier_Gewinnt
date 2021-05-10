@@ -1,5 +1,4 @@
 #include "player_human.h"
-#include "matchfield_model.h"
 
 player_human::player_human() : player_interface()
 {
@@ -17,7 +16,7 @@ int player_human::make_move()
 {
 	int nUInp{};
 
-	std::cout << m_name << ", du bist an der Reihe! Gib die Spalte an (4 - " << matchfield_model::get_x() << "), in die du setzen moechtest!" << std::endl;
+	std::cout << m_name << ", du bist an der Reihe! Gib die Spalte an (4 - " << m_controller->get_matchfieldModelX() << "), in die du setzen moechtest!" << std::endl;
 	std::cin >> nUInp;
 	return nUInp;
 }

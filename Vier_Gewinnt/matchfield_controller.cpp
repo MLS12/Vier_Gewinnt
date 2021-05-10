@@ -1,4 +1,3 @@
-#include "matchfield_controller.h"
 #include "player_computer.h"
 #include "player_human.h"
 

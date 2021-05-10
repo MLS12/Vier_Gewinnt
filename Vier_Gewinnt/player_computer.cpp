@@ -1,5 +1,4 @@
 #include "player_computer.h"
-#include "matchfield_model.h"
 #include <random>
 
 player_computer::player_computer() : player_interface()
@@ -38,7 +37,8 @@ player_computer::~player_computer()
 int player_computer::make_move()
 {
 	constexpr int nMin = 4;
-	constexpr int nMax = matchfield_model::get_x();
+	int nMax = m_controller->get_matchfieldModelX();		// Stöcker fragen, ob das so funktioniert
+	
 
 	switch (m_dif) {
 	case Difficulty::Difficulty::eEasy:
