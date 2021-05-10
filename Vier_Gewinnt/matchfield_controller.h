@@ -23,6 +23,7 @@ public:
 	bool game();
 	bool search_winner();
 	bool setup();
-
+	int get_matchfieldModelX() { return m_model->get_x(); };
+	int get_matchfieldModelY() { return m_model->get_y(); };
 };
 

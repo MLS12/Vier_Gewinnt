@@ -1,5 +1,5 @@
 #include "player_computer.h"
-#include "matchfield_model.h"
+#include <random>
 
 player_computer::player_computer() : player_interface()
 {
@@ -10,22 +10,22 @@ player_computer::player_computer(std::string s, int dif) : player_interface(s)
 
 	switch (dif) {
 		case 0:
-			make_move(Difficulty::Difficulty::eEasy);
+			m_dif = Difficulty::Difficulty::eEasy;
 			break;
 
 		case 1:
 			std::cout << "Der Advanced-Mode ist noch nicht verfügbar! Der Computer spielt in der Schwierigkeitsstufe 'Easy'!" << std::endl;
-			make_move(Difficulty::Difficulty::eEasy);
+			m_dif = Difficulty::Difficulty::eEasy;
 			break;
 
 		case 2:
 			std::cout << "Der Hard-Mode ist noch nicht verfügbar! Der Computer spielt in der Schwierigkeitsstufe 'Easy'!" << std::endl;
-			make_move(Difficulty::Difficulty::eEasy);
+			m_dif = Difficulty::Difficulty::eEasy;
 			break;
 
 		default:
-			std::cout << "Die Eingabe war nicht korrekt! er Computer spielt in der Schwierigkeitsstufe 'Easy'!" << std::endl;
-			make_move(Difficulty::Difficulty::eEasy);
+			std::cout << "Die Eingabe war nicht korrekt! Der Computer spielt in der Schwierigkeitsstufe 'Easy'!" << std::endl;
+			m_dif = Difficulty::Difficulty::eEasy;
 			break;
 	}
 }
@@ -34,22 +34,33 @@ player_computer::~player_computer()
 {
 }
 
-int player_computer::make_move(Difficulty::Difficulty dif)
+int player_computer::make_move()
 {
-	switch (dif) {
-	eEasy:
+	constexpr int nMin = 4;
+	int nMax = m_controller->get_matchfieldModelX();		// Stöcker fragen, ob das so funktioniert
+	
 
-		std::cout << m_name << "ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
+	switch (m_dif) {
+	case Difficulty::Difficulty::eEasy:
+
+		std::cout << m_name << " ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
+
+		// Erzeugen einer Zufallszahl im Bereich 4 - X-Wert
+		std::random_device rd;
+		std::default_random_engine eng(rd());
+		std::uniform_int_distribution<int> distr(nMin, nMax);
+
+		return distr(eng);
 
 			break;
 
-		eAdvanced:
+	case Difficulty::Difficulty::eAdvanced:
 
 			// Code wird noch geschrieben
 
 			break;
 
-		eHard:
+	case Difficulty::Difficulty::eHard:
 
 			// Code wird noch geschrieben
 
