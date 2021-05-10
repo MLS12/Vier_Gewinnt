@@ -17,7 +17,7 @@ int player_human::make_move()
 {
 	int nUInp{};
 
-	std::cout << m_name << ", du bist an der Reihe! Gib die Spalte an (4 - " << matchfield_model::get_y << "), in die du setzen moechtest!" << std::endl;
+	std::cout << m_name << ", du bist an der Reihe! Gib die Spalte an (4 - " << matchfield_model::get_x() << "), in die du setzen moechtest!" << std::endl;
 	std::cin >> nUInp;
 	return nUInp;
 }
