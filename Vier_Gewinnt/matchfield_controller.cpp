@@ -17,10 +17,38 @@ matchfield_controller::~matchfield_controller()
     delete m_player.at(1);
 }
 
-bool matchfield_controller::check(int, FieldState::FieldState)
+bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //kontrolliert übergebe Spaltennummer auf freie Felder/ruft make_entry auf
 {
-    //Testkommentar im check
-    return false;
+    std::vector <std::vector<int>> numberField;          //Vektor mit Feldnummern
+    int nField = 0, i = 0, cnt = 0;
+    FieldState::FieldState stateOfField;
+
+    numberField.resize(m_model->get_y());                //Festlegen der Spielfeldgröße auf den Feldnummern-Vektor
+    for (auto& i : numberField) {
+        i.resize(m_model->get_x());
+    }
+    for (int i = 0; i < m_model->get_y(); i++) {         //Durchnummerieren der Felder im Feldnummern-Vektor
+        for (int j = 0; j < m_model->get_x(); j++) {
+            numberField[i][j] = cnt++;
+        }
+    }
+
+    if  ( nColumn < m_model->get_x()){                   //Spalte zu groß
+        return false;
+    }
+    else {
+        do {
+            stateOfField = m_model->get_entry((nColumn + 1) + (i * m_model->get_x()));  //Zustand des Feldes abspeichern
+            i++;                                                                        //Zeilenzähler
+        } while ((stateOfField != FieldState::FieldState::eEmpty) || (i != (m_model->get_y() + 1)));
+
+        if ((i == 1) && (stateOfField != FieldState::FieldState::eEmpty)) { //erstes Feld der Spalte schon besetzt
+            return false;
+        }
+
+        m_model->make_entry(numberField[i - 2][nColumn], state); //Abspeichern des Zustandes in Feld mit Feldnummer
+        return true;
+    }
 }
 
 bool matchfield_controller::game()
