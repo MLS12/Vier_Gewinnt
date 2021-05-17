@@ -1,6 +1,5 @@
 #include "player_computer.h"
 #include "player_human.h"
-#include <WinUser.h>
 #include <Windows.h>
 
 matchfield_controller::matchfield_controller()
@@ -68,7 +67,7 @@ bool matchfield_controller::game()
 
     m_view.show_model();
 
-    while (!GetAsyncKeyState(VK_ESCAPE) || nWinner != 1 || nWinner != 2) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
+    while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) || nWinner != 1 || nWinner != 2) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
         for (int i = 1; i <= 2; i++) {
             if (i == 1) check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1);
             else if(i == 2) check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2);

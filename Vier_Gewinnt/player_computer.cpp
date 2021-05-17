@@ -39,18 +39,17 @@ player_computer::~player_computer()
 int player_computer::make_move()
 {
 	constexpr int nMin = 1;
-	int nMax = m_x;		// Stöcker fragen, ob das so funktioniert
+	int nMax = m_x;		
 	
+	// Erzeugen einer Zufallszahl im Bereich 1 - X-Wert
+	std::random_device rd;
+	std::default_random_engine eng(rd());
+	std::uniform_int_distribution<int> distr(nMin, nMax);
 
 	switch (m_dif) {
 	case Difficulty::Difficulty::eEasy:
 
 		std::cout << get_name() << " ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
-
-		// Erzeugen einer Zufallszahl im Bereich 1 - X-Wert
-		std::random_device rd;
-		std::default_random_engine eng(rd());
-		std::uniform_int_distribution<int> distr(nMin, nMax);
 
 		return distr(eng);
 
