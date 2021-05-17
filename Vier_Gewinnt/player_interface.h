@@ -15,7 +15,7 @@ public:
 	player_interface(std::string);
 	~player_interface();	
 
-	virtual int make_move();
+	virtual int make_move() = 0;
 	bool set_name(std::string);
 };
 

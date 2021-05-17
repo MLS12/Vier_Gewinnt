@@ -14,11 +14,6 @@ player_interface::~player_interface()
 {
 }
 
-int player_interface::make_move()
-{
-	return 0;
-}
-
 bool player_interface::set_name(std::string s)
 {
 	if (s.length() <= 15) {
