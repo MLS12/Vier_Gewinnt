@@ -12,8 +12,9 @@ class matchfield_controller
 {
 private:
 	std::array<player_interface*, 2> m_player;
-	matchfield_model* m_model;
-	matchfield_view* m_view;
+	matchfield_model m_model;
+	matchfield_view m_view;
+	int m_y = 0, m_x = 0;
 
 public:
 	matchfield_controller();
@@ -23,7 +24,5 @@ public:
 	bool game();
 	bool search_winner();
 	bool setup();
-	int get_matchfieldModelX() { return m_model->get_x(); };
-	int get_matchfieldModelY() { return m_model->get_y(); };
 };
 

@@ -5,8 +5,10 @@ player_computer::player_computer() : player_interface()
 {
 }
 
-player_computer::player_computer(std::string s, int dif) : player_interface(s)
+player_computer::player_computer(std::string s, int dif) : player_interface()
 {
+
+	set_name(s);
 
 	switch (dif) {
 		case 0:
@@ -37,13 +39,13 @@ player_computer::~player_computer()
 int player_computer::make_move()
 {
 	constexpr int nMin = 4;
-	int nMax = m_controller->get_matchfieldModelX();		// Stöcker fragen, ob das so funktioniert
+	int nMax = m_x;		// Stöcker fragen, ob das so funktioniert
 	
 
 	switch (m_dif) {
 	case Difficulty::Difficulty::eEasy:
 
-		std::cout << m_name << " ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
+		std::cout << get_name() << " ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
 
 		// Erzeugen einer Zufallszahl im Bereich 4 - X-Wert
 		std::random_device rd;

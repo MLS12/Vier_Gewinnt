@@ -6,14 +6,12 @@ class matchfield_model
 {
 private:
 	
-	int m_x, m_y;												//Größe des Spielfeldes
+	int m_y = 0, m_x = 0;
 	std::vector <std::vector<FieldState::FieldState>> m_field;	//Spielfeld-Vektor vom Typ FieldState
 
 public:
 
-
 	matchfield_model();
-	matchfield_model(int, int);
 	~matchfield_model();
 
 	bool make_entry(int, FieldState::FieldState);
@@ -21,10 +19,5 @@ public:
 	void clear_field();
 	int get_coordinateX(int);
 	int get_coordinateY(int);
-	int get_x() {
-		return m_x;
-	}
-	int get_y() {
-		return m_y;
-	}
+	void set_size(int, int);
 };

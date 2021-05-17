@@ -1,5 +1,4 @@
 #include "matchfield_view.h"
-#include "matchfield_model.h"
 #include <iostream>
 
 matchfield_view::matchfield_view()
@@ -13,8 +12,8 @@ matchfield_view::~matchfield_view()
 void matchfield_view::show_model()      //Ausgeben des aktuellen Spielfeldes an die Konsole
 {
     
-    for (int i = 1; i < m_model->get_x(); i++) {
-        for (int j = 1; j < m_model->get_y(); j++) {
+    for (int i = 1; i < m_x; i++) {
+        for (int j = 1; j < m_y; j++) {
             if (m_model->get_entry(i * j) == FieldState::FieldState::eEmpty) {
                 std::cout << '| ' << '\t';
             }
@@ -26,4 +25,14 @@ void matchfield_view::show_model()      //Ausgeben des aktuellen Spielfeldes an 
             }
         }
     }
+}
+
+void matchfield_view::set_x(int x)
+{
+    m_x = x;
+}
+
+void matchfield_view::set_y(int y)
+{
+    m_y = y;
 }

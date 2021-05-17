@@ -4,16 +4,6 @@ matchfield_model::matchfield_model()
 {
 }
 
-matchfield_model::matchfield_model(int x, int y)
-{
-    m_x = x;                    //Speichern der X-Größe des Spielfeldes
-    m_y = y;                    //Speichern der Y-Größe des Spielfeldes
-    m_field.resize(m_y);        //Spielfeld auf Y-Größe bringen
-    for (auto& i : m_field) {
-        i.resize(m_x);          //Spielfeld auf X-Größe bringen
-    }
-}
-
 matchfield_model::~matchfield_model()
 {
 }
@@ -72,6 +62,17 @@ int matchfield_model::get_coordinateY(int field)     //Gibt die Y-Koordinate ein
         }
     }
     return y;
+}
+
+void matchfield_model::set_size(int x, int y)
+{
+    m_x = x;
+    m_y = y;
+
+    m_field.resize(y);        //Spielfeld auf Y-Größe bringen
+    for (auto& i : m_field) {
+        i.resize(x);          //Spielfeld auf X-Größe bringen
+    }
 }
 
 bool matchfield_model::make_entry(int field, FieldState::FieldState state)  //Eintragen eines Zustandes an das übergebene Feld

@@ -5,17 +5,22 @@
 
 class player_interface
 {
-protected:
+private:
 	std::string m_name;
 
-	matchfield_controller* m_controller;	// Funktionell?!
+protected:
+	bool set_name(std::string s) {
+		if (s.length() <= 15) {
+			m_name = s;
+			return true;
+		}
+		return false;
+	};
+	int m_x = 0;
 
 public:
-	player_interface();
-	player_interface(std::string);
-	~player_interface();	
-
 	virtual int make_move() = 0;
-	bool set_name(std::string);
+	void set_x(int x) { m_x = x; };
+	std::string get_name() { return m_name; };
 };
 

@@ -5,8 +5,8 @@ matchfield_controller::matchfield_controller()
 {
     m_player.at(0) = NULL;
     m_player.at(1) = NULL;
-    m_model = NULL;
-    m_view = NULL;
+    m_y = 4;
+    m_x = 4;
 
 }
 
@@ -22,30 +22,30 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
     int nField = 0, i = 0, cnt = 0;
     FieldState::FieldState stateOfField;
 
-    numberField.resize(m_model->get_y());                //Festlegen der Spielfeldgröße auf den Feldnummern-Vektor
+    numberField.resize(m_y);                //Festlegen der Spielfeldgröße auf den Feldnummern-Vektor
     for (auto& i : numberField) {
-        i.resize(m_model->get_x());
+        i.resize(m_x);
     }
-    for (int i = 0; i < m_model->get_y(); i++) {         //Durchnummerieren der Felder im Feldnummern-Vektor
-        for (int j = 0; j < m_model->get_x(); j++) {
+    for (int i = 0; i < m_y; i++) {         //Durchnummerieren der Felder im Feldnummern-Vektor
+        for (int j = 0; j < m_x; j++) {
             numberField[i][j] = cnt++;
         }
     }
 
-    if  ( nColumn < m_model->get_x()){                   //Spalte zu groß
+    if  ( nColumn < m_x){                   //Spalte zu groß
         return false;
     }
     else {
         do {
-            stateOfField = m_model->get_entry((nColumn + 1) + (i * m_model->get_x()));  //Zustand des Feldes abspeichern
+            stateOfField = m_model.get_entry((nColumn + 1) + (i * m_x));  //Zustand des Feldes abspeichern
             i++;                                                                        //Zeilenzähler
-        } while ((stateOfField != FieldState::FieldState::eEmpty) || (i != (m_model->get_y() + 1)));
+        } while ((stateOfField != FieldState::FieldState::eEmpty) || (i != (m_y + 1)));
 
         if ((i == 1) && (stateOfField != FieldState::FieldState::eEmpty)) { //erstes Feld der Spalte schon besetzt
             return false;
         }
 
-        m_model->make_entry(numberField[i - 2][nColumn], state); //Abspeichern des Zustandes in Feld mit Feldnummer
+        m_model.make_entry(numberField[i - 2][nColumn], state); //Abspeichern des Zustandes in Feld mit Feldnummer
         return true;
     }
 }
@@ -64,28 +64,29 @@ bool matchfield_controller::search_winner()
 
 bool matchfield_controller::setup()
 {
-    int nFieldX = 0, nFieldY = 0, nHumanPlayers = 3, DifP1 = 0, DifP2 = 0;
+    int nHumanPlayers = 3, DifP1 = 0, DifP2 = 0;
     std::string cPlayer1{}, cPlayer2{};
 
     // Einlesen der Spielfeldgröße in X- und Y-Richtung
     // X-Richtung
     do {
         std::cout << "Bitte geben Sie die Spielfeldgroesse in x-Richtung ein (4 - 100): " << std::endl;
-        std::cin >> nFieldX;
+        std::cin >> m_x;
         system("CLS");
-    } while (nFieldX < 4 && nFieldX > 100);
+    } while (m_x < 4 && m_x > 100);
 
     // Y-Richtung
     do {
         std::cout << "Bitte geben Sie die Spielfeldgroesse in xy-Richtung ein (4 - 100): " << std::endl;
-        std::cin >> nFieldY;
+        std::cin >> m_y;
         system("CLS");
-    } while (nFieldY < 4 && nFieldY > 100);
+    } while (m_y < 4 && m_y > 100);
 
-    std::cout << "Ihr Spielfeld hat die Groesse " << nFieldX << "x" << nFieldY << " (XxY)" << std::endl;
+    std::cout << "Ihr Spielfeld hat die Groesse " << m_x << "x" << m_y << " (XxY)" << std::endl;
 
-    matchfield_model::matchfield_model(nFieldX, nFieldY);                                                   // Konstruktor - Aufruf Model
-
+    m_model.set_size(m_x,m_y);                                                   // Setze x und y Wert im Model
+    m_view.set_x(m_x);                                                           // Setze x im View
+    m_view.set_y(m_y);                                                          // Setze y im View
 
     // Abfragen der Spieler
 
@@ -106,6 +107,7 @@ bool matchfield_controller::setup()
                 system("CLS");
             } while (DifP1 != 0 || DifP1 != 1 || DifP1 != 2);
             m_player.at(0) = new player_computer(cPlayer1, DifP1);
+            m_player.at(0)->set_x(m_x);
 
             std::cout << std::endl;
 
@@ -117,6 +119,7 @@ bool matchfield_controller::setup()
                 system("CLS");
             } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
             m_player.at(1) = new player_computer(cPlayer2, DifP2);
+            m_player.at(1)->set_x(m_x);
 
             break;
 
@@ -124,6 +127,7 @@ bool matchfield_controller::setup()
             std::cout << "Bitte gib deinen Namen ein: ";
             std::cin >> cPlayer1;
             m_player.at(0) = new player_human(cPlayer1);
+            m_player.at(0)->set_x(m_x);
 
             std::cout << std::endl;
 
@@ -135,6 +139,7 @@ bool matchfield_controller::setup()
                 system("CLS");
             } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
             m_player.at(1) = new player_computer(cPlayer2, DifP2);
+            m_player.at(1)->set_x(m_x);
 
             break;
 
@@ -142,12 +147,14 @@ bool matchfield_controller::setup()
             std::cout << "Bitte gib den Namen von Player 1 ein: ";
             std::cin >> cPlayer1;
             m_player.at(0) = new player_human(cPlayer1);
+            m_player.at(0)->set_x(m_x);
 
             std::cout << std::endl;
 
             std::cout << "Bitte gib den Namen von Player 2 ein: ";
             std::cin >> cPlayer2;
             m_player.at(1) = new player_human(cPlayer2);
+            m_player.at(1)->set_x(m_x);
 
             break;
 

@@ -27,9 +27,6 @@
     <ClCompile Include="matchfield_view.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="player_interface.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="player_human.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>

@@ -145,7 +145,6 @@
     <ClCompile Include="matchfield_view.cpp" />
     <ClCompile Include="player_computer.cpp" />
     <ClCompile Include="player_human.cpp" />
-    <ClCompile Include="player_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="E_Difficulty.h" />
