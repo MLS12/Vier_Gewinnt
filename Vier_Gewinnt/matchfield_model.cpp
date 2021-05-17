@@ -87,7 +87,8 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
         for (int j = 0; j < m_x; j++) {
             if (m_field.at(i).at(j) == m_field.at(i).at(j + 1) &&
                 m_field.at(i).at(j) == m_field.at(i).at(j + 2) &&
-                m_field.at(i).at(j) == m_field.at(i).at(j + 3))
+                m_field.at(i).at(j) == m_field.at(i).at(j + 3) &&
+                m_field.at(i).at(j) != FieldState::FieldState::eEmpty)
             {
                 return true;
             }
@@ -99,7 +100,8 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
         for (int j = 0; j < m_x; j++) {
             if (m_field.at(i).at(j) == m_field.at(i + 1).at(j) &&
                 m_field.at(i).at(j) == m_field.at(i + 2).at(j) &&
-                m_field.at(i).at(j) == m_field.at(i + 3).at(j))
+                m_field.at(i).at(j) == m_field.at(i + 3).at(j) &&
+                m_field.at(i).at(j) != FieldState::FieldState::eEmpty)
             {
                 return true;
             }
@@ -111,7 +113,9 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
         for (int j = 0; j < m_x; j++) {
             if (m_field.at(i).at(j) == m_field.at(i + 1).at(j + 1) &&
                 m_field.at(i).at(j) == m_field.at(i + 2).at(j + 2) &&
-                m_field.at(i).at(j) == m_field.at(i + 3).at(j + 3)){
+                m_field.at(i).at(j) == m_field.at(i + 3).at(j + 3) &&
+                m_field.at(i).at(j) != FieldState::FieldState::eEmpty)
+            {
                 return true;
             }
         }
@@ -122,7 +126,9 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
         for (int j = 0; j < m_x; j++) {
             if (m_field.at(i).at(j) == m_field.at(i + 1).at(j - 1) &&
                 m_field.at(i).at(j) == m_field.at(i + 2).at(j - 2) &&
-                m_field.at(i).at(j) == m_field.at(i + 3).at(j - 3)){
+                m_field.at(i).at(j) == m_field.at(i + 3).at(j - 3) &&
+                m_field.at(i).at(j) != FieldState::FieldState::eEmpty)
+            {
                 return true;
             }
         }

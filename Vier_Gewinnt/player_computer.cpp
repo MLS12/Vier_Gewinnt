@@ -38,7 +38,7 @@ player_computer::~player_computer()
 
 int player_computer::make_move()
 {
-	constexpr int nMin = 4;
+	constexpr int nMin = 1;
 	int nMax = m_x;		// Stöcker fragen, ob das so funktioniert
 	
 
@@ -59,6 +59,7 @@ int player_computer::make_move()
 	case Difficulty::Difficulty::eAdvanced:
 
 			// Code wird noch geschrieben
+
 
 			break;
 
