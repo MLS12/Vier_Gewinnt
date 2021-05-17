@@ -8,8 +8,13 @@ matchfield_model::~matchfield_model()
 {
 }
 
-void matchfield_model::clear_field()
+void matchfield_model::clear_field() // Leert jedes Feld
 {
+    for (int i = 0; i < m_y; i++) {
+        for (int j = 0; j < m_x; j++) {
+            m_field.at(i).at(j) = FieldState::FieldState::eEmpty;
+        }
+    }
 }
 
 int matchfield_model::get_coordinateX(int field)     //Gibt die X-Koordinate eines übergebenen Feldes zurück
@@ -73,6 +78,56 @@ void matchfield_model::set_size(int x, int y)
     for (auto& i : m_field) {
         i.resize(x);          //Spielfeld auf X-Größe bringen
     }
+}
+
+bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte oder diagonale 4er-Paare
+{
+    // Waagerecht:
+    for (int i = 0; i < m_y; i++) {
+        for (int j = 0; j < m_x; j++) {
+            if (m_field.at(i).at(j) == m_field.at(i).at(j + 1) &&
+                m_field.at(i).at(j) == m_field.at(i).at(j + 2) &&
+                m_field.at(i).at(j) == m_field.at(i).at(j + 3))
+            {
+                return true;
+            }
+        }
+    }
+
+    // Senkrecht:
+    for (int i = 0; i < m_y; i++) {
+        for (int j = 0; j < m_x; j++) {
+            if (m_field.at(i).at(j) == m_field.at(i + 1).at(j) &&
+                m_field.at(i).at(j) == m_field.at(i + 2).at(j) &&
+                m_field.at(i).at(j) == m_field.at(i + 3).at(j))
+            {
+                return true;
+            }
+        }
+    }
+
+    // Diagonal 1:
+    for (int i = 0; i < m_y; i++) {
+        for (int j = 0; j < m_x; j++) {
+            if (m_field.at(i).at(j) == m_field.at(i + 1).at(j + 1) &&
+                m_field.at(i).at(j) == m_field.at(i + 2).at(j + 2) &&
+                m_field.at(i).at(j) == m_field.at(i + 3).at(j + 3)){
+                return true;
+            }
+        }
+    }
+
+    // Diagonal 2:
+    for (int i = 0; i < m_y; i++) {
+        for (int j = 0; j < m_x; j++) {
+            if (m_field.at(i).at(j) == m_field.at(i + 1).at(j - 1) &&
+                m_field.at(i).at(j) == m_field.at(i + 2).at(j - 2) &&
+                m_field.at(i).at(j) == m_field.at(i + 3).at(j - 3)){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 bool matchfield_model::make_entry(int field, FieldState::FieldState state)  //Eintragen eines Zustandes an das übergebene Feld

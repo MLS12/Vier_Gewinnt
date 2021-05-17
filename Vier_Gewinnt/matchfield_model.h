@@ -20,4 +20,6 @@ public:
 	int get_coordinateX(int);
 	int get_coordinateY(int);
 	void set_size(int, int);
+	bool search_winner();
+
 };

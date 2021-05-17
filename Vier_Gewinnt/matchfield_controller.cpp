@@ -57,13 +57,6 @@ bool matchfield_controller::game()
     return false;
 }
 
-bool matchfield_controller::search_winner()
-{
-    // Waagerechte 4er-Paare:
-    m_model
-    return false;
-}
-
 bool matchfield_controller::setup()
 {
     int nHumanPlayers = 3, DifP1 = 0, DifP2 = 0;

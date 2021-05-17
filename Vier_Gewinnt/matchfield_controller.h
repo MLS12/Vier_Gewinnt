@@ -22,7 +22,6 @@ public:
 
 	bool check(int, FieldState::FieldState);
 	bool game();
-	bool search_winner();
 	bool setup();
 };
 
