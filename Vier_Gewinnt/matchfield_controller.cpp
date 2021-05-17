@@ -1,5 +1,7 @@
 #include "player_computer.h"
 #include "player_human.h"
+#include <WinUser.h>
+#include <Windows.h>
 
 matchfield_controller::matchfield_controller()
 {
@@ -28,7 +30,7 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
     }
     for (int i = 0; i < m_y; i++) {         //Durchnummerieren der Felder im Feldnummern-Vektor
         for (int j = 0; j < m_x; j++) {
-            numberField[i][j] = cnt++;
+            numberField.at(i).at(j) = cnt++;
         }
     }
 
@@ -52,9 +54,43 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
 
 bool matchfield_controller::game()
 {
-    // Test
+    int nWinner = 0;
+ 
+    if (!setup()) {                                                         // Aufrufen des Setups zum Abfragen der Spielfeldgroesse und der Spieler selbst
+        return false;
+    };
 
-    return false;
+    std::cout << "Das Spiel kann nun beginnen! Du kannst das Spiel mit der ESC-Taste beenden!" << std::endl;
+
+    Sleep(200);
+
+    system("CLS");
+
+    m_view.show_model();
+
+    while (!GetAsyncKeyState(VK_ESCAPE) || nWinner != 1 || nWinner != 2) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
+        for (int i = 1; i <= 2; i++) {
+            if (i == 1) check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1);
+            else if(i == 2) check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2);
+
+            system("CLS");
+
+            m_view.show_model();
+
+            if (m_model.search_winner()) {
+                nWinner = i;
+                break;
+            }
+        }
+    };
+
+    std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner) << "! Du hast gewonnen!" << std::endl;
+    std::cout << "Das Spiel wird beendet!" << std::endl;
+
+    m_model.clear_field();
+    
+    return true;
+    
 }
 
 bool matchfield_controller::setup()

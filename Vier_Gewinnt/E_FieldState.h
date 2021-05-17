@@ -5,6 +5,5 @@ namespace FieldState {
 		eEmpty,
 		ePlayer1,
 		ePlayer2,
-		eAccessError
 	};
 }

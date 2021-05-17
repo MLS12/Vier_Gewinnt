@@ -47,7 +47,7 @@ int player_computer::make_move()
 
 		std::cout << get_name() << " ist an der Reihe und wird seinen Zug ausfuehren!" << std::endl;
 
-		// Erzeugen einer Zufallszahl im Bereich 4 - X-Wert
+		// Erzeugen einer Zufallszahl im Bereich 1 - X-Wert
 		std::random_device rd;
 		std::default_random_engine eng(rd());
 		std::uniform_int_distribution<int> distr(nMin, nMax);

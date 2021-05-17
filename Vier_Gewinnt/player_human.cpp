@@ -17,7 +17,12 @@ int player_human::make_move()
 {
 	int nUInp{};
 
-	std::cout << get_name() << ", du bist an der Reihe! Gib die Spalte an (4 - " << m_x << "), in die du setzen moechtest!" << std::endl;
+	std::cout << get_name() << ", du bist an der Reihe! Gib die Spalte an (1 - " << m_x << "), in die du setzen moechtest!" << std::endl;
 	std::cin >> nUInp;
+	while (nUInp < 1 || nUInp >= m_x) {
+		std::cout << "Deine Eingabe ist ungueltig! Gib eine Spalte zwischen 1 und " << m_x << " an!";
+		std::cin >> nUInp;
+	};
+
 	return nUInp;
 }
