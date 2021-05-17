@@ -107,7 +107,7 @@ bool matchfield_controller::setup()
                 std::cin >> DifP1;
                 system("CLS");
             } while (DifP1 != 0 || DifP1 != 1 || DifP1 != 2);
-            m_player.at(0) = &player_computer(cPlayer1, DifP1);
+            m_player.at(0) = new player_computer(cPlayer1, DifP1);
 
             std::cout << std::endl;
 
@@ -118,14 +118,14 @@ bool matchfield_controller::setup()
                 std::cin >> DifP2;
                 system("CLS");
             } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
-            m_player.at(1) = &player_computer(cPlayer2, DifP2);
+            m_player.at(1) = new player_computer(cPlayer2, DifP2);
 
             break;
 
         case 1:
             std::cout << "Bitte gib deinen Namen ein: ";
             std::cin >> cPlayer1;
-            m_player.at(0) = &player_human(cPlayer1);
+            m_player.at(0) = new player_human(cPlayer1);
 
             std::cout << std::endl;
 
@@ -136,20 +136,20 @@ bool matchfield_controller::setup()
                 std::cin >> DifP2;
                 system("CLS");
             } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
-            m_player.at(1) = &player_computer(cPlayer2, DifP2);
+            m_player.at(1) = new player_computer(cPlayer2, DifP2);
 
             break;
 
         case 2:
             std::cout << "Bitte gib den Namen von Player 1 ein: ";
             std::cin >> cPlayer1;
-            m_player.at(0) = &player_human(cPlayer1);
+            m_player.at(0) = new player_human(cPlayer1);
 
             std::cout << std::endl;
 
             std::cout << "Bitte gib den Namen von Player 2 ein: ";
             std::cin >> cPlayer2;
-            m_player.at(1) = &player_human(cPlayer2);
+            m_player.at(1) = new player_human(cPlayer2);
 
             break;
 
