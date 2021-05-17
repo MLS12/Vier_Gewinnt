@@ -59,6 +59,8 @@ bool matchfield_controller::game()
 
 bool matchfield_controller::search_winner()
 {
+    // Waagerechte 4er-Paare:
+    m_model
     return false;
 }
 
