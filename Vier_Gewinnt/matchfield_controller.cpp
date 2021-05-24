@@ -61,7 +61,7 @@ bool matchfield_controller::game()
 
     std::cout << "Das Spiel kann nun beginnen! Du kannst das Spiel mit der ESC-Taste beenden!" << std::endl;
 
-    Sleep(200);
+    Sleep(2000);
 
     system("CLS");
 
@@ -83,7 +83,7 @@ bool matchfield_controller::game()
         }
     };
 
-    std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner) << "! Du hast gewonnen!" << std::endl;
+    std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner).get_name() << "! Du hast gewonnen!" << std::endl;  // Ausgabe des Spielernamens
     std::cout << "Das Spiel wird beendet!" << std::endl;
 
     m_model.clear_field();
