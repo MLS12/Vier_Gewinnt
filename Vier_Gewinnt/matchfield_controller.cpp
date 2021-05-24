@@ -4,8 +4,7 @@
 
 matchfield_controller::matchfield_controller()
 {
-    m_player.at(0) = NULL;
-    m_player.at(1) = NULL;
+    m_player = {NULL, NULL};
     m_y = 4;
     m_x = 4;
 
