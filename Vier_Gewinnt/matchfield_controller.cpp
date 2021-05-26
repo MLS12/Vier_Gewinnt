@@ -105,7 +105,7 @@ bool matchfield_controller::setup()
 
     // Y-Richtung
     do {
-        std::cout << "Bitte geben Sie die Spielfeldgroesse in xy-Richtung ein (4 - 100): " << std::endl;
+        std::cout << "Bitte geben Sie die Spielfeldgroesse in y-Richtung ein (4 - 100): " << std::endl;
         std::cin >> m_y;
         system("CLS");
     } while (m_y < 4 && m_y > 100);
@@ -118,11 +118,19 @@ bool matchfield_controller::setup()
 
     // Abfragen der Spieler
 
-    do {
+    std::cout << "Wie viele menschliche Spieler spielen das Spiel(0, 1, 2): ";
+    std::cin >> nHumanPlayers;
+
+    while (nHumanPlayers != 0 && nHumanPlayers != 1 && nHumanPlayers != 2) {
+        std::cout << "Ihre Eingabe ist fehlerhaft! Bitte gib die Anzahl der menschlichen Spieler ein (0, 1, 2): " << std::endl;
+        std::cin >> nHumanPlayers;
+    }
+
+   /* do {
         std::cout << "Wie viele menschliche Spieler spielen das Spiel(0, 1, 2): ";
         std::cin >> nHumanPlayers;
         system("CLS");
-    } while (nHumanPlayers != 0 || nHumanPlayers != 1 || nHumanPlayers != 2);
+    } while (nHumanPlayers != 0 || nHumanPlayers != 1 || nHumanPlayers != 2);*/
 
     // Je nach Spielertyp geschieht die Eingabe und der entsprechende Konstruktor-Aufruf
     switch (nHumanPlayers) {
@@ -133,7 +141,7 @@ bool matchfield_controller::setup()
                 std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 1 ein (Easy = 0, Advanced = 1, Hard = 2): ";
                 std::cin >> DifP1;
                 system("CLS");
-            } while (DifP1 != 0 || DifP1 != 1 || DifP1 != 2);
+            } while (DifP1 != 0 && DifP1 != 1 && DifP1 != 2);
             m_player.at(0) = new player_computer(cPlayer1, DifP1);
             m_player.at(0)->set_x(m_x);
 
@@ -145,7 +153,7 @@ bool matchfield_controller::setup()
                 std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
                 std::cin >> DifP2;
                 system("CLS");
-            } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
+            } while (DifP2 != 0 && DifP2 != 1 && DifP2 != 2);
             m_player.at(1) = new player_computer(cPlayer2, DifP2);
             m_player.at(1)->set_x(m_x);
 
@@ -165,7 +173,7 @@ bool matchfield_controller::setup()
                 std::cout << "Bitte gib die Schwierigkeitsstufe von Computer-Player 2 ein (Easy = 0, Advanced = 1, Hard = 2): ";
                 std::cin >> DifP2;
                 system("CLS");
-            } while (DifP2 != 0 || DifP2 != 1 || DifP2 != 2);
+            } while (DifP2 != 0 && DifP2 != 1 && DifP2 != 2);
             m_player.at(1) = new player_computer(cPlayer2, DifP2);
             m_player.at(1)->set_x(m_x);
 
