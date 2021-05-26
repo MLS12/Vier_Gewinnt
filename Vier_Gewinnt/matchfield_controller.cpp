@@ -1,5 +1,4 @@
-#include "player_computer.h"
-#include "player_human.h"
+#include "matchfield_controller.h"
 #include <Windows.h>
 
 matchfield_controller::matchfield_controller()
@@ -82,7 +81,7 @@ bool matchfield_controller::game()
         }
     };
 
-    std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner).get_name() << "! Du hast gewonnen!" << std::endl;  // Ausgabe des Spielernamens
+    std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner)->get_name() << "! Du hast gewonnen!" << std::endl;  // Ausgabe des Spielernamens
     std::cout << "Das Spiel wird beendet!" << std::endl;
 
     m_model.clear_field();

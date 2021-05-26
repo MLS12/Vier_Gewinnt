@@ -2,6 +2,8 @@
 #include "matchfield_model.h"
 #include "matchfield_view.h"
 #include "player_interface.h"
+#include "player_computer.h"
+#include "player_human.h"
 #include <array>
 #include "E_FieldState.h"
 #include "E_Difficulty.h"
