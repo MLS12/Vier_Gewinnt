@@ -33,7 +33,7 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
         }
     }
 
-    if  ( nColumn < m_x){                   //Spalte zu groﬂ
+    if  ( nColumn > m_x){                   //Spalte zu groﬂ
         return false;
     }
     else {
@@ -46,7 +46,7 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
             return false;
         }
 
-        m_model.make_entry(numberField[i - 2][nColumn], state); //Abspeichern des Zustandes in Feld mit Feldnummer
+        m_model.make_entry(numberField.at(i - 2).at(nColumn), state); //Abspeichern des Zustandes in Feld mit Feldnummer
         return true;
     }
 }

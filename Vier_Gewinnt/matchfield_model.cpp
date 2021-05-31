@@ -85,7 +85,7 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
 {
     // Waagerecht:
     for (int i = 0; i < m_y; i++) {
-        for (int j = 0; j < m_x; j++) {
+        for (int j = 0; j < m_x-3; j++) {
             if (m_field.at(i).at(j) == m_field.at(i).at(j + 1) &&
                 m_field.at(i).at(j) == m_field.at(i).at(j + 2) &&
                 m_field.at(i).at(j) == m_field.at(i).at(j + 3) &&
@@ -97,7 +97,7 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
     }
 
     // Senkrecht:
-    for (int i = 0; i < m_y; i++) {
+    for (int i = 0; i < m_y-3; i++) {
         for (int j = 0; j < m_x; j++) {
             if (m_field.at(i).at(j) == m_field.at(i + 1).at(j) &&
                 m_field.at(i).at(j) == m_field.at(i + 2).at(j) &&
@@ -110,8 +110,8 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
     }
 
     // Diagonal 1:
-    for (int i = 0; i < m_y; i++) {
-        for (int j = 0; j < m_x; j++) {
+    for (int i = 0; i < m_y-3; i++) {
+        for (int j = 0; j < m_x-3; j++) {
             if (m_field.at(i).at(j) == m_field.at(i + 1).at(j + 1) &&
                 m_field.at(i).at(j) == m_field.at(i + 2).at(j + 2) &&
                 m_field.at(i).at(j) == m_field.at(i + 3).at(j + 3) &&
@@ -123,7 +123,7 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
     }
 
     // Diagonal 2:
-    for (int i = 0; i < m_y; i++) {
+    /*for (int i = 0; i < m_y-3; i++) {
         for (int j = 0; j < m_x; j++) {
             if (m_field.at(i).at(j) == m_field.at(i + 1).at(j - 1) &&
                 m_field.at(i).at(j) == m_field.at(i + 2).at(j - 2) &&
@@ -133,8 +133,9 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
                 return true;
             }
         }
-    }
+    }*/
     return false;
+
 }
 
 bool matchfield_model::make_entry(int field, FieldState::FieldState state)  //Eintragen eines Zustandes an das übergebene Feld
