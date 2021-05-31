@@ -29,13 +29,13 @@ int matchfield_model::get_coordinateX(int field)     //Gibt die X-Koordinate ein
     }
     for (int i = 0; i < m_y; i++) {             //Durchnummerieren der Felder im Feldnummern-Vektor
         for (int j = 0; j < m_x; j++) {
-            numberField[i][j] = cnt++;
+            numberField.at(i).at(j) = cnt++;
         }
     }
 
     for (int i = 0; i < m_y; i++) {             //Durchsuchen des Feldnummern-Vektors nach übergebener Feldnummer
         for (int j = 0; j < m_x; j++) {
-            if (numberField[i][j] == field) {
+            if (numberField.at(i).at(j) == field) {
                 x = i;                          //Speichern der X-Koordinate
             }
         }
@@ -45,23 +45,23 @@ int matchfield_model::get_coordinateX(int field)     //Gibt die X-Koordinate ein
 
 int matchfield_model::get_coordinateY(int field)     //Gibt die Y-Koordinate eines übergebenen Feldes zurück
 {
-    std::vector <std::vector<int>> numberField; //Vektor mit Feld-Nummern
+    std::vector <std::vector<int>> numberField{}; //Vektor mit Feld-Nummern
     int cnt = 1;
     int y = 0;
 
-    numberField.resize(m_y);                    //Festlegen der Spielfeldgröße auf den Feldnummern-Vektor
+    numberField.resize(m_y);                    //Festlegen der Spielfeldgröße auf den Feldnummern-Vektor FEHLER
     for (auto& i : numberField) {
         i.resize(m_x);
     }
     for (int i = 0; i < m_y; i++) {             //Durchnummerieren der Felder im Feldnummern-Vektor
         for (int j = 0; j < m_x; j++) {
-            numberField[i][j] = cnt++;
+            numberField.at(i).at(j) = cnt++;
         }
     }
 
     for (int i = 0; i < m_y; i++) {             //Durchsuchen des Feldnummern-Vektors nach übergebener Feldnummer
         for (int j = 0; j < m_x; j++) {
-            if (numberField[i][j] == field) {
+            if (numberField.at(i).at(j) == field) {
                 y = j;                          //Speichern der Y-Koordinate
             }
         }

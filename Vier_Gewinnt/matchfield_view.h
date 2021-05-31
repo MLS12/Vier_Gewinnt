@@ -2,6 +2,7 @@
 #include "matchfield_model.h"
 //#include "matchfield_controller.h"
 
+// Template implementieren
 class matchfield_view
 {
 private:
