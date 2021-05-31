@@ -2,6 +2,7 @@
 
 matchfield_model::matchfield_model()
 {
+    clear_field();
 }
 
 matchfield_model::~matchfield_model()

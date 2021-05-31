@@ -1,10 +1,6 @@
 #include "matchfield_view.h"
 #include <iostream>
 
-matchfield_view::matchfield_view()
-{
-}
-
 matchfield_view::~matchfield_view()
 {
 }
@@ -12,8 +8,6 @@ matchfield_view::~matchfield_view()
 void matchfield_view::show_model()      //Ausgeben des aktuellen Spielfeldes an die Konsole
 {
     int k = 1;
-
-    m_model->set_size(m_x, m_y);
     
     for (int i = 1; i < m_x; i++) {
         for (int j = 1; j < m_y; j++) {

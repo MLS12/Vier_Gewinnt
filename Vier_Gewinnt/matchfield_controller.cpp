@@ -3,6 +3,8 @@
 
 matchfield_controller::matchfield_controller()
 {
+    m_model = matchfield_model();
+    m_view = matchfield_view(&m_model);
     m_player = {NULL, NULL};
     m_y = 4;
     m_x = 4;
