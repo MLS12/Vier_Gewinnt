@@ -37,10 +37,10 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
         return false;
     }
     else {
-        do {
-            stateOfField = m_model.get_entry((nColumn + 1) + (i * m_x));  //Zustand des Feldes abspeichern
+        do {                                                            //Durchlaufen der Felder in der gewünschten Spalte
+            stateOfField = m_model.get_entry((nColumn) + (i * m_x));    //Zustand des Feldes abspeichern (Zeile für Zeile in der gewünschten Spalte)
             i++;                                                                        //Zeilenzähler
-        } while ((stateOfField != FieldState::FieldState::eEmpty) || (i != (m_y + 1)));
+        } while ((stateOfField == FieldState::FieldState::eEmpty) && (i <= (m_y)));       //Solange abgesp. Feld leer ist und max. Zeilenzahl nicht überschritten 
 
         if ((i == 1) && (stateOfField != FieldState::FieldState::eEmpty)) { //erstes Feld der Spalte schon besetzt
             return false;
