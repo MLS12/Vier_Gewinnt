@@ -142,7 +142,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matchfield_controller.cpp" />
     <ClCompile Include="matchfield_model.cpp" />
-    <ClCompile Include="matchfield_view.cpp" />
     <ClCompile Include="player_computer.cpp" />
     <ClCompile Include="player_human.cpp" />
   </ItemGroup>

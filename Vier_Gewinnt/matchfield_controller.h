@@ -15,7 +15,7 @@ class matchfield_controller
 private:
 	std::array<player_interface*, 2> m_player;
 	matchfield_model m_model;
-	matchfield_view m_view;
+	matchfield_view<int> m_view;
 	int m_y = 0, m_x = 0;
 
 public:

@@ -4,7 +4,7 @@
 matchfield_controller::matchfield_controller()
 {
     m_model = matchfield_model();
-    m_view = matchfield_view(&m_model);
+    m_view = matchfield_view<int>(&m_model);
     m_player = {NULL, NULL};
     m_y = 4;
     m_x = 4;
@@ -67,7 +67,7 @@ bool matchfield_controller::game()
 
     m_view.show_model();
 
-    while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) || nWinner != 1 || nWinner != 2) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
+    while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) && (nWinner != 1 || nWinner != 2)) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
         for (int i = 1; i <= 2; i++) {
             if (i == 1) check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1);
             else if(i == 2) check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2);
@@ -99,18 +99,22 @@ bool matchfield_controller::setup()
 
     // Einlesen der Spielfeldgröße in X- und Y-Richtung
     // X-Richtung
-    do {
-        std::cout << "Bitte geben Sie die Spielfeldgroesse in x-Richtung ein (4 - 100): " << std::endl;
+    std::cout << "Bitte geben Sie die Spielfeldgroesse in x-Richtung ein (4 - 100): " << std::endl;
+    std::cin >> m_x;
+    while (m_x < 4 || m_x > 100) {
+        std::cout << "Die Eingabe war Fehlerhaft! Bitte gib eine Zahl zwischen 4 - 100 ein: " << std::endl;
         std::cin >> m_x;
         system("CLS");
-    } while (m_x < 4 && m_x > 100);
+    }
 
     // Y-Richtung
-    do {
-        std::cout << "Bitte geben Sie die Spielfeldgroesse in y-Richtung ein (4 - 100): " << std::endl;
+    std::cout << "Bitte geben Sie die Spielfeldgroesse in y-Richtung ein (4 - 100): " << std::endl;
+    std::cin >> m_y;
+    while (m_y < 4 || m_y > 100) {
+        std::cout << "Die Eingabe war Fehlerhaft! Bitte gib eine Zahl zwischen 4 - 100 ein: " << std::endl;
         std::cin >> m_y;
         system("CLS");
-    } while (m_y < 4 && m_y > 100);
+    }
 
     std::cout << "Ihr Spielfeld hat die Groesse " << m_x << "x" << m_y << " (XxY)" << std::endl;
 
@@ -119,20 +123,13 @@ bool matchfield_controller::setup()
     m_view.set_y(m_y);                                                          // Setze y im View
 
     // Abfragen der Spieler
-
     std::cout << "Wie viele menschliche Spieler spielen das Spiel(0, 1, 2): ";
     std::cin >> nHumanPlayers;
-
     while (nHumanPlayers != 0 && nHumanPlayers != 1 && nHumanPlayers != 2) {
         std::cout << "Ihre Eingabe ist fehlerhaft! Bitte gib die Anzahl der menschlichen Spieler ein (0, 1, 2): " << std::endl;
         std::cin >> nHumanPlayers;
     }
-
-   /* do {
-        std::cout << "Wie viele menschliche Spieler spielen das Spiel(0, 1, 2): ";
-        std::cin >> nHumanPlayers;
-        system("CLS");
-    } while (nHumanPlayers != 0 || nHumanPlayers != 1 || nHumanPlayers != 2);*/
+    std::cout << std::endl;
 
     // Je nach Spielertyp geschieht die Eingabe und der entsprechende Konstruktor-Aufruf
     switch (nHumanPlayers) {
