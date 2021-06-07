@@ -123,11 +123,11 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
     }
 
     // Diagonal 2:
-    for (int i = 4; i < m_y; i++) {
+    for (int i = 3; i < m_y; i++) {
         for (int j = 0; j < m_x-3; j++) {
-            if (m_field.at(i).at(j) == m_field.at(i + 1).at(j - 1) &&
-                m_field.at(i).at(j) == m_field.at(i + 2).at(j - 2) &&
-                m_field.at(i).at(j) == m_field.at(i + 3).at(j - 3) &&
+            if (m_field.at(i).at(j) == m_field.at(i - 1).at(j + 1) &&
+                m_field.at(i).at(j) == m_field.at(i - 2).at(j + 2) &&
+                m_field.at(i).at(j) == m_field.at(i - 3).at(j + 3) &&
                 m_field.at(i).at(j) != FieldState::FieldState::eEmpty)
             {
                 return true;
