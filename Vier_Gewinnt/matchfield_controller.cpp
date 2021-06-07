@@ -52,7 +52,8 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
 
 bool matchfield_controller::game()
 {
-    int nWinner = 0;
+    int nWinner = 3;
+    bool bDraw = false;
  
     if (!setup()) {                                                         // Aufrufen des Setups zum Abfragen der Spielfeldgroesse und der Spieler selbst
         return false;
@@ -66,14 +67,14 @@ bool matchfield_controller::game()
 
     m_view.show_model();
 
-    while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) && nWinner != 1 && nWinner != 2) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
-        for (int i = 1; i <= 2; i++) {
-            if (i == 1) { 
+    while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) && nWinner != 0 && nWinner != 1 && !bDraw) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
+        for (int i = 0; i <= 1; i++) {
+            if (i == 0) { 
                 while (!check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1)) {
                     std::cout << std::endl << "Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
                 }
             }
-            else if (i == 2) {
+            else if (i == 1) {
                 while (!check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2)) {
                     std::cout << std::endl <<"Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
                 }
@@ -87,10 +88,23 @@ bool matchfield_controller::game()
                 nWinner = i;
                 break;
             }
-        }
-    };
 
-    std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner)->get_name() << "! Du hast gewonnen!" << std::endl;  // Ausgabe des Spielernamens
+            if (m_model.search_draw()) {
+                bDraw = true;
+                break;
+            }
+
+
+        }
+    }
+
+    if (bDraw) {
+        std::cout << "Unentschieden! Es sind keine weiteren Zuege moeglich." << std::endl;
+    }
+    else {
+        std::cout << "Herzlichen Glueckwunsch " << m_player.at(nWinner)->get_name() << "! Du hast gewonnen!" << std::endl;  // Ausgabe des Spielernamens
+    }
+    
     std::cout << "Das Spiel wird beendet!" << std::endl;
 
     m_model.clear_field();

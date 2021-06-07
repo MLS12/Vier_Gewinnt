@@ -81,6 +81,7 @@ void matchfield_model::set_size(int x, int y)
     }
 }
 
+
 bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte oder diagonale 4er-Paare
 {
     // Waagerecht:
@@ -136,6 +137,19 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
     }
     return false;
 
+}
+
+bool matchfield_model::search_draw() //Untersucht das Spielfeld auf freie Felder
+{
+    for (int i = 0; i < m_y; i++) {
+        for (int j = 0; j < m_x; j++) {
+            if (m_field.at(i).at(j) == FieldState::FieldState::eEmpty)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 bool matchfield_model::make_entry(int field, FieldState::FieldState state)  //Eintragen eines Zustandes an das übergebene Feld

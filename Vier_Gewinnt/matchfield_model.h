@@ -21,5 +21,6 @@ public:
 	int get_coordinateY(int);
 	void set_size(int, int);
 	bool search_winner();
+	bool search_draw();
 
 };
