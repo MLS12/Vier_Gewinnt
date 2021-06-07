@@ -37,7 +37,7 @@ int matchfield_model::get_coordinateX(int field)     //Gibt die X-Koordinate ein
     for (int i = 0; i < m_y; i++) {             //Durchsuchen des Feldnummern-Vektors nach übergebener Feldnummer
         for (int j = 0; j < m_x; j++) {
             if (numberField.at(i).at(j) == field) {
-                x = i;                       //Speichern der X-Koordinate
+                x = j;                       //Speichern der X-Koordinate
             }
         }
     }
@@ -63,7 +63,7 @@ int matchfield_model::get_coordinateY(int field)     //Gibt die Y-Koordinate ein
     for (int i = 0; i < m_y; i++) {             //Durchsuchen des Feldnummern-Vektors nach übergebener Feldnummer
         for (int j = 0; j < m_x; j++) {
             if (numberField.at(i).at(j) == field) {
-                y = j;                          //Speichern der Y-Koordinate
+                y = i;                          //Speichern der Y-Koordinate
             }
         }
     }
@@ -140,11 +140,11 @@ bool matchfield_model::search_winner() //Überprüft auf waagerechte, senkrechte o
 
 bool matchfield_model::make_entry(int field, FieldState::FieldState state)  //Eintragen eines Zustandes an das übergebene Feld
 {
-    m_field.at(get_coordinateX(field)).at(get_coordinateY(field)) = state;            //Speichern des übergebenen Zustandes in das Spielfeld
+    m_field.at(get_coordinateY(field)).at(get_coordinateX(field)) = state;            //Speichern des übergebenen Zustandes in das Spielfeld
     return true;
 }
 
 FieldState::FieldState matchfield_model::get_entry(int field)
 {
-    return m_field.at(get_coordinateX(field)).at(get_coordinateY(field));             //Rückgabe des Zustandes in der übergebenen Feldnummer
+    return m_field.at(get_coordinateY(field)).at(get_coordinateX(field));             //Rückgabe des Zustandes in der übergebenen Feldnummer
 }

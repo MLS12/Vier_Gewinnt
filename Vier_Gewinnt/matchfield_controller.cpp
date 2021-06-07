@@ -46,8 +46,13 @@ bool matchfield_controller::check(int nColumn, FieldState::FieldState state) //k
             return false;
         }
 
-        m_model.make_entry(numberField.at(i - 2).at(nColumn), state); //Abspeichern des Zustandes in Feld mit Feldnummer
-        return true;
+        /*if (nColumn == m_x) {
+            m_model.make_entry(numberField.at(i - 3).at(nColumn-1), state);
+        }
+        else {*/
+            m_model.make_entry(numberField.at(i - 2).at(nColumn), state); //Abspeichern des Zustandes in Feld mit Feldnummer
+            return true;
+        //}
     }
 }
 

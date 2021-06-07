@@ -18,8 +18,8 @@ public:
 	void show_model() {
         int k = 1;
 
-        for (int i = 1; i < m_x + 1; i++) {
-            for (int j = 1; j < m_y + 1; j++) {
+        for (int i = 1; i < m_y + 1; i++) {
+            for (int j = 1; j < m_x + 1; j++) {
                 if (m_model->get_entry(k) == FieldState::FieldState::eEmpty) {
                     std::cout << "| " << "\t";
                 }
