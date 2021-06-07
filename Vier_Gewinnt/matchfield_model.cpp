@@ -37,7 +37,7 @@ int matchfield_model::get_coordinateX(int field)     //Gibt die X-Koordinate ein
     for (int i = 0; i < m_y; i++) {             //Durchsuchen des Feldnummern-Vektors nach übergebener Feldnummer
         for (int j = 0; j < m_x; j++) {
             if (numberField.at(i).at(j) == field) {
-                x = i;                          //Speichern der X-Koordinate
+                x = i;                       //Speichern der X-Koordinate
             }
         }
     }
