@@ -68,8 +68,16 @@ bool matchfield_controller::game()
 
     while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) && nWinner != 1 && nWinner != 2) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
         for (int i = 1; i <= 2; i++) {
-            if (i == 1) check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1);
-            else if(i == 2) check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2);
+            if (i == 1) { 
+                while (!check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1)) {
+                    std::cout << std::endl << "Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
+                }
+            }
+            else if (i == 2) {
+                while (!check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2)) {
+                    std::cout << std::endl <<"Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
+                }
+            }
 
             system("CLS");
 
