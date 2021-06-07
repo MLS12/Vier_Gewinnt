@@ -6,7 +6,7 @@ int main() {
 
 	if (!match.game()) {
 		return EXIT_FAILURE;
-	};
+	}
 
 	return EXIT_SUCCESS;
 }
