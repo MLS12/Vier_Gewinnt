@@ -20,8 +20,9 @@ int player_human::make_move()
 	std::cout << get_name() << ", du bist an der Reihe! Gib die Spalte an (1 - " << m_x << "), in die du setzen moechtest!" << std::endl;
 	std::cin >> nUInp;
 
-	// Fehler bei Buchstabeneingabe
-	while (nUInp < 1 || nUInp > m_x) {
+	while (!std::cin.good() || nUInp > m_x || nUInp < 1) { //Erneute Eingabe bei zu großer/zu kleiner Zahl oder bei Buchstabeneingabe
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cout << "Deine Eingabe ist ungueltig! Gib eine Spalte zwischen 1 und " << m_x << " an!" << std::endl;
 		std::cin >> nUInp;
 	}
