@@ -1,10 +1,8 @@
 #pragma once
 #include "matchfield_model.h"
-//#include "matchfield_controller.h"
 #include <iostream>
 
-// Template implementieren
-template <typename coordinates> class matchfield_view
+template <typename coordinates> class matchfield_view       // Erzeugen einer Template-Klasse, damit Datentyp unabhängig ein Spielfeld erzeugt werden könnte (Bei uns natürlich trotzdem nur Ganzzahlig)
 {
 private:
 	matchfield_model* m_model = nullptr;

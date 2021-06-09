@@ -4,9 +4,14 @@ player_human::player_human() : player_interface()
 {
 }
 
-player_human::player_human(std::string s) : player_interface()
+player_human::player_human(std::string s)
 {
-	set_name(s);
+	while (!set_name(s) || !std::cin.good()) {		// Überprüfen, ob der Name nicht zu lang ist und ggf. neue Abfrage
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Der Name ist zu lang! Gib bitte einen kuerzeren Namen ein: " << std::endl;
+		std::cin >> s;
+	}
 }
 
 player_human::~player_human()

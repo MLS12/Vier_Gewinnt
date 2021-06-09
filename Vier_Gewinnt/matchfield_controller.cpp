@@ -4,7 +4,7 @@
 matchfield_controller::matchfield_controller()
 {
     m_model = matchfield_model();
-    m_view = matchfield_view<int>(&m_model);
+    m_view = matchfield_view<int>(&m_model);      
     m_player = {NULL, NULL};
     m_y = 4;
     m_x = 4;
@@ -70,12 +70,12 @@ bool matchfield_controller::game()
     while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) && nWinner != 0 && nWinner != 1 && !bDraw) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
         for (int i = 0; i <= 1; i++) {
             if (i == 0) { 
-                while (!check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1)) {
+                while (!check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1)) {     // Solange keine freie Spalte mittels Check gefunden wird, wird der Spieler im Player-Array 0 aufgefordert eine Spalte auszuwaehlen
                     std::cout << std::endl << "Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
                 }
             }
             else if (i == 1) {
-                while (!check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2)) {
+                while (!check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2)) {      // Solange keine freie Spalte mittels Check gefunden wird, wird der Spieler im Player-Array 1 aufgefordert eine Spalte auszuwaehlen
                     std::cout << std::endl <<"Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
                 }
             }
@@ -84,12 +84,12 @@ bool matchfield_controller::game()
 
             m_view.show_model();
 
-            if (m_model.search_winner()) {
+            if (m_model.search_winner()) {      // Kontrolliert, nachdem beide Spieler gespielt haben, ob ein Gewinner vorliegt
                 nWinner = i;
                 break;
             }
 
-            if (m_model.search_draw()) {
+            if (m_model.search_draw()) {        // Kontroliiert, ob ein Unentschieden vorliegt, wenn keine Spalte mehr frei ist
                 bDraw = true;
                 break;
             }
@@ -137,7 +137,7 @@ bool matchfield_controller::setup()
         system("CLS");
     }
 
-    std::cout << "Ihr Spielfeld hat die Groesse " << m_x << "x" << m_y << " (XxY)" << std::endl;
+    std::cout << "Ihr Spielfeld hat die Groesse " << m_x << "x" << m_y << " (XxY)" << std::endl << std::endl;
 
     m_model.set_size(m_x,m_y);                                                   // Setze x und y Wert im Model
     m_view.set_x(m_x);                                                           // Setze x im View
@@ -152,7 +152,7 @@ bool matchfield_controller::setup()
     }
     std::cout << std::endl;
 
-    // Je nach Spielertyp geschieht die Eingabe und der entsprechende Konstruktor-Aufruf
+    // Je nach Spielertyp wird der entsprechende Fall aufgerufen und Objekte in dem Spieler-Array erzeugt
     switch (nHumanPlayers) {
         case 0: 
             std::cout << "Bitte gib einen Namen fuer Computer-Player 1 ein: ";
@@ -162,8 +162,8 @@ bool matchfield_controller::setup()
                 std::cin >> DifP1;
                 system("CLS");
             } while (DifP1 != 0 && DifP1 != 1 && DifP1 != 2);
-            m_player.at(0) = new player_computer(cPlayer1, DifP1);
-            m_player.at(0)->set_x(m_x);
+            m_player.at(0) = new player_computer(cPlayer1, DifP1);      // Erzeugen des Computer-Spielers im Player-Array an der Stelle 0
+            m_player.at(0)->set_x(m_x);                                 // Übergeben des x-Wertes an das erzeugte Objekt im Player-Array
 
             std::cout << std::endl;
 
@@ -174,16 +174,16 @@ bool matchfield_controller::setup()
                 std::cin >> DifP2;
                 system("CLS");
             } while (DifP2 != 0 && DifP2 != 1 && DifP2 != 2);
-            m_player.at(1) = new player_computer(cPlayer2, DifP2);
-            m_player.at(1)->set_x(m_x);
+            m_player.at(1) = new player_computer(cPlayer2, DifP2);      // Erzeugen des Computer-Spielers im Player-Array an der Stelle 1
+            m_player.at(1)->set_x(m_x);                                 // Übergeben des x-Wertes an das erzeugte Objekt im Player-Array
 
             break;
 
         case 1:
             std::cout << "Bitte gib deinen Namen ein: ";
             std::cin >> cPlayer1;
-            m_player.at(0) = new player_human(cPlayer1);
-            m_player.at(0)->set_x(m_x);
+            m_player.at(0) = new player_human(cPlayer1);            // Erzeugen des Mensch-Spielers im Player-Array an der Stelle 0
+            m_player.at(0)->set_x(m_x);                             // Übergeben des x-Wertes an das erzeugte Objekt im Player-Array
 
             std::cout << std::endl;
 
@@ -194,23 +194,23 @@ bool matchfield_controller::setup()
                 std::cin >> DifP2;
                 system("CLS");
             } while (DifP2 != 0 && DifP2 != 1 && DifP2 != 2);
-            m_player.at(1) = new player_computer(cPlayer2, DifP2);
-            m_player.at(1)->set_x(m_x);
+            m_player.at(1) = new player_computer(cPlayer2, DifP2);      // Erzeugen des Computer-Spielers im Player-Array an der Stelle 1
+            m_player.at(1)->set_x(m_x);                                 // Übergeben des x-Wertes an das erzeugte Objekt im Player-Array
 
             break;
 
         case 2:
             std::cout << "Bitte gib den Namen von Player 1 ein: ";
             std::cin >> cPlayer1;
-            m_player.at(0) = new player_human(cPlayer1);
-            m_player.at(0)->set_x(m_x);
+            m_player.at(0) = new player_human(cPlayer1);            // Erzeugen des Mensch-Spielers im Player-Array an der Stelle 0
+            m_player.at(0)->set_x(m_x);                             // Übergeben des x-Wertes an das erzeugte Objekt im Player-Array
 
             std::cout << std::endl;
 
             std::cout << "Bitte gib den Namen von Player 2 ein: ";
             std::cin >> cPlayer2;
-            m_player.at(1) = new player_human(cPlayer2);
-            m_player.at(1)->set_x(m_x);
+            m_player.at(1) = new player_human(cPlayer2);            // Erzeugen des Mensch-Spielers im Player-Array an der Stelle 0
+            m_player.at(1)->set_x(m_x);                             // Übergeben des x-Wertes an das erzeugte Objekt im Player-Array
 
             break;
 

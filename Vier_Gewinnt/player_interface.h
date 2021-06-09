@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <iostream>
-//#include "matchfield_controller.h"
 
 class player_interface
 {

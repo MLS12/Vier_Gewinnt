@@ -5,12 +5,16 @@ player_computer::player_computer() : player_interface()
 {
 }
 
-player_computer::player_computer(std::string s, int dif) : player_interface()
+player_computer::player_computer(std::string s, int dif) 
 {
+	while (!set_name(s) || !std::cin.good()) {			// Überprüfen, ob der Name nicht zu lang ist und ggf. neue Abfrage
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Der Computer-Name ist zu lang! Gib bitte einen kuerzeren Namen ein: " << std::endl;
+		std::cin >> s;
+	}
 
-	set_name(s);
-
-	switch (dif) {
+	switch (dif) {		// Zuweisen der Schwierigkeit in Abhängigkeit der ausgewaehlten Schwierigkeitsstufe
 		case 0:
 			m_dif = Difficulty::Difficulty::eEasy;
 			break;
