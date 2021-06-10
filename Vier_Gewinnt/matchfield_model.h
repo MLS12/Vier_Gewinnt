@@ -7,7 +7,7 @@ class matchfield_model
 private:
 	
 	int m_y = 0, m_x = 0;
-	std::vector <std::vector<FieldState::FieldState>> m_field;	//Spielfeld-Vektor vom Typ FieldState
+	std::vector <std::vector<FieldState::FieldState>> m_field;	// Erzeugen eines zweidimensionalen Vectors, welches das Spielfeld vom Typ FieldState aufbaut
 
 public:
 
