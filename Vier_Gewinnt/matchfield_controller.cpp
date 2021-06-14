@@ -86,8 +86,6 @@ bool matchfield_controller::game()
                 bDraw = true;
                 break;
             }
-
-
         }
     }
 
