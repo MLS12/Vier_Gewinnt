@@ -17,6 +17,7 @@ private:
 	matchfield_model m_model;						// Erzeugen eines Objekts vom matchfield_model
 	matchfield_view<int> m_view;					// Erzeugen eines Objekts vom matchfield_view
 	int m_y = 0, m_x = 0;
+	FieldState::FieldState currentPlayer(int);
 
 public:
 	matchfield_controller();

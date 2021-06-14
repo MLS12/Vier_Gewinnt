@@ -69,15 +69,8 @@ bool matchfield_controller::game()
 
     while (!(GetAsyncKeyState(VK_ESCAPE) & 0x8000) && nWinner != 0 && nWinner != 1 && !bDraw) {      // Ausführen der Spielanweisungen, bis ein Gewinner ermittelt wird oder der Spieler mit ESC beendet
         for (int i = 0; i <= 1; i++) {
-            if (i == 0) { 
-                while (!check(m_player.at(0)->make_move(), FieldState::FieldState::ePlayer1)) {     // Solange keine freie Spalte mittels Check gefunden wird, wird der Spieler im Player-Array 0 aufgefordert eine Spalte auszuwaehlen
-                    std::cout << std::endl << "Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
-                }
-            }
-            else if (i == 1) {
-                while (!check(m_player.at(1)->make_move(), FieldState::FieldState::ePlayer2)) {      // Solange keine freie Spalte mittels Check gefunden wird, wird der Spieler im Player-Array 1 aufgefordert eine Spalte auszuwaehlen
-                    std::cout << std::endl <<"Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
-                }
+            while (!check(m_player.at(i)->make_move(), currentPlayer(i))) {     // Solange keine freie Spalte mittels Check gefunden wird, wird der Spieler im Player-Array 0 aufgefordert eine Spalte auszuwaehlen
+                std::cout << std::endl << "Die Spalte ist voll! Bitte waehle eine andere Spalte aus!" << std::endl << std::endl;
             }
 
             system("CLS");
@@ -222,4 +215,10 @@ bool matchfield_controller::setup()
     }
 
     return true;
+}
+
+FieldState::FieldState matchfield_controller::currentPlayer(int z)      // Methode, um den aktuellen Spieler in Abhängigkeit eines int-Wertes zurück zu geben
+{
+    if (z == 0) return FieldState::FieldState::ePlayer1;
+    else if (z == 1) return FieldState::FieldState::ePlayer2;
 }
