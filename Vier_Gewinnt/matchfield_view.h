@@ -5,8 +5,8 @@
 template <typename coordinates> class matchfield_view       // Erzeugen einer Template-Klasse, damit Datentyp unabhängig ein Spielfeld erzeugt werden könnte (Bei uns natürlich trotzdem nur Ganzzahlig)
 {
 private:
-	matchfield_model* m_model = nullptr;
-	coordinates m_x, m_y;
+	matchfield_model* m_model = nullptr;                    // Erzeugen eines referenzierten Objekts des Models als Aggregation des Models
+	coordinates m_x, m_y;                                   // Datentyp "coordinates" wird beim Erzeugen des Objekts zugewiesen
 
 public:
 	matchfield_view() { m_model = nullptr; };
@@ -16,6 +16,7 @@ public:
 	void show_model() {
         int k = 1;
 
+        // Aufbau des Spielfeldes in der Konsole in Abhägigkeit der x- und y-Koordinaten und in Abhägigkeit des Status, der im Model in das Spielfeld geschrieben wurde
         for (int i = 1; i < m_y + 1; i++) {
             for (int j = 1; j < m_x + 1; j++) {
                 if (m_model->get_entry(k) == FieldState::FieldState::eEmpty) {

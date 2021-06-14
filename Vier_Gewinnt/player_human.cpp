@@ -18,6 +18,7 @@ player_human::~player_human()
 {
 }
 
+// Virtuelle Funktion aus dem play_interface wird hier implementiert, aber anders, als beim player_computer
 int player_human::make_move()
 {
 	int nUInp{};

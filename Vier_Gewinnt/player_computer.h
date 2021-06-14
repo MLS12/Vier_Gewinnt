@@ -2,7 +2,7 @@
 #include "player_interface.h"
 #include "E_Difficulty.h"
 
-class player_computer	:	public player_interface
+class player_computer	:	public player_interface    // Klasse, die von dem player_interface abgeleitet ist
 {
 private:
 	Difficulty::Difficulty m_dif;

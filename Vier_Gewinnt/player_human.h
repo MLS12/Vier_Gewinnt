@@ -1,6 +1,7 @@
 #pragma once
 #include "player_interface.h"
-class player_human	:	public player_interface
+
+class player_human	:	public player_interface     // Klasse, die von dem player_interface abgeleitet ist
 {
 public:
 	player_human();

@@ -40,6 +40,7 @@ player_computer::~player_computer()
 {
 }
 
+// Virtuelle Funktion aus dem play_interface wird hier implementiert, aber ander als beim player_human
 int player_computer::make_move()
 {
 	constexpr int nMin = 1;
@@ -50,6 +51,7 @@ int player_computer::make_move()
 	std::default_random_engine eng(rd());
 	std::uniform_int_distribution<int> distr(nMin, nMax);
 
+	// In Abhägigkeit der eingegebenen Schweirigkeit wird eine entsprechende "Intielligenz" bei den Spielzügen angewandt
 	switch (m_dif) {
 	case Difficulty::Difficulty::eEasy:
 
